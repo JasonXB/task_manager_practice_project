@@ -3,5 +3,5 @@ const getAllTasks = (req, res) => {
 };
 
 module.exports = {
-  getAllTasks,
+  getAllTasks, // can export several functions if needed
 };
