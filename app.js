@@ -1,34 +1,39 @@
 const express = require("express");
 const app = express();
+const tasks = require("./routes/tasks");
 
-// READ DATA
-app.get("/hello", (req, res) => {
-  res.status(200).send("Task Manager App Operational");
-});
-app.get("/getAllTasks", (req, res) => {
-  res.status(200).send("Task Manager App Operational");
-});
+// Call middleware on all route handlers in this file
+app.use(express.json()); // allows json data in req.body
 
-// CREATE NEW DATA
-app.post("/addNewTask", (req, res) => {
-  res.status(200).send("Task Manager App Operational");
-});
+// Route handlers for /api/v1/tasks are inside tasks.js
+app.use('/api/v1/tasks', tasks); // called like a middleware function
 
-// UPDATE DATA
-app.put("/renameTask", (req, res) => {
+
+// Get basic details for all tasks
+app.get("/api/v1/tasks", (req, res) => {
   res.status(200).send("Task Manager App Operational");
 });
-app.put("/completeTask", (req, res) => {
-  res.status(200).send("Task Manager App Operational");
-});
-app.put("/uncompleteTask", (req, res) => {
+// Get all possible details for a single task
+app.get("/api/v1/tasks/:id", (req, res) => {
   res.status(200).send("Task Manager App Operational");
 });
 
-// DELETE DATA
-app.delete("/deleteTask", (req, res) => {
+// Create a new task
+app.post("/api/v1/tasks", (req, res) => {
+  res.status(200).send("Task Manager App Operational");
+  res.status(200).send("");
+});
+
+// Update a task's name or completion status
+app.put("/api/v1/tasks/:id", (req, res) => {
   res.status(200).send("Task Manager App Operational");
 });
 
-const port = 3000; // set up port to broadcast to during development
+// Delete a task
+app.delete("/api/v1/tasks/:id", (req, res) => {
+  res.status(200).send("Task Manager App Operational");
+});
+
+// Set up port to broadcast to during development
+const port = 3000;
 app.listen(port, console.log(`server is listening on port ${port}`));
